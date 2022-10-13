@@ -61,6 +61,12 @@ print(employees[1]["address"]["country"])
 output:
 
 name : Tina
+job : DevOps Engineer
+city : New York
+name : Tim
+job : Developer
+city : Sydney
+Australia   
 
 
 
