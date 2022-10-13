@@ -93,14 +93,7 @@ def validate_and_execution():
     try:
         user_input_value1=int(user_input1)
         user_input_value2=int(user_input2)
-        if((user_input_value1>=0)and(user_input_value2>=0)):
-           calculation(user_input_value1,user_input_value2)
-        elif((user_input_value1<=0)and(user_input_value2<=0)):
-           calculation(user_input_value1, user_input_value2)
-        elif((user_input_value1<=0)and(user_input_value2>=0)):
-           calculation(user_input_value1, user_input_value2)
-        else:
-           calculation(user_input_value1, user_input_value2)
+        calculation(user_input_value1,user_input_value2)
     except ValueError:
             print("you entered an invalid numbers,please enter valid numbers")
 
