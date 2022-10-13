@@ -172,7 +172,7 @@ def cal_of_evenno(input):
     even_no=[i for i in input if i%2==0]
     print(f"the even no are {even_no} ")
 
-3........main module.........      
+#........main module.........      
     
 import helper
 
@@ -201,6 +201,61 @@ enter a string:SireeSha
 no of upper case letters in SireeSha are 2
 no of upper case letters in SireeSha are 6
 the even no are [2, 6, 56, 98, 36]
+
+6.#.........guessing number game...........
+import random
+def guessing_num():
+  list = random.randint(1, 9)
+  ran_num=list
+  return ran_num
+
+def result_of_game(ran_value,user_input):
+
+  if ran_value==user_input:
+    return "YOU WON!"
+
+
+  elif ran_value>user_input:
+     return "you are guessing too low!"
+
+  elif ran_value<user_input:
+     return "you are guessing too high"
+
+
+ran_values=guessing_num()
+user_input="true"
+count=0
+
+while user_input=="true":
+
+     guess_number=int(input("guess a number between 1 to 9 range:"))
+     final_result=result_of_game(ran_values,guess_number)
+     if final_result=="YOU WON!":
+         break
+     else:
+         print(final_result)
+
+
+print(final_result)
+
+
+output:
+guess a number between 1 to 9 range:8
+you are guessing too high
+guess a number between 1 to 9 range:2
+you are guessing too low!
+guess a number between 1 to 9 range:4
+you are guessing too low!
+guess a number between 1 to 9 range:6
+you are guessing too high
+guess a number between 1 to 9 range:5
+YOU WON!
+
+
+
+
+
+
 
 
 
