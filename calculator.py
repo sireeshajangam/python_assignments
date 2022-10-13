@@ -1,3 +1,21 @@
+1.  #......First Program
+my_list=[1,2,2,4,4.5,6.8,10,13,22,35,52,83]
+print(my_list)
+new_list=[i for i in my_list if i>=10]
+print(new_list)
+user_input=int(input("hey user enter a number\n"))
+new_list1=[i for i in my_list if i>=user_input]
+print(new_list1)
+
+
+output:
+[1, 2, 2, 4, 4.5, 6.8, 10, 13, 22, 35, 52, 83]
+[10, 13, 22, 35, 52, 83]
+hey user enter a number
+3
+[4, 4.5, 6.8, 10, 13, 22, 35, 52, 83]
+
+2.3....Second program
 
 
 
