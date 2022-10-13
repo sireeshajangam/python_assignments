@@ -1,3 +1,5 @@
+4.#.............calculator Program............
+
 def calculation(input1,input2):
 
        addition_of_num=input1+input2
@@ -73,8 +75,61 @@ Do u wnt to run the program!:no
 3 times you are performed the calculations
 Thank You
 
+helper module:
+
+def operations_on_dict(data):
+    for k in range(len(data)):
+        print("name", ':', data[k]["name"])
+        print("age", ':', data[k]["age"])
+    min_age = min(data, key=lambda x: x['age'])
+    print("the youngest employee is")
+    print(min_age["name"], ':', min_age["age"])
 
 
+def count_of_lower_upper(input):
+    upper=0
+    lower=0
+    for x in input:
+         if x.isupper():
+             upper=upper+1
+         elif x.islower():
+             lower=lower+1
+         else:
+             pass
+    print(f"no of upper case letters in {input} are {upper}")
+    print(f"no of upper case letters in {input} are {lower}")
+
+def cal_of_evenno(input):
+    even_no=[i for i in input if i%2==0]
+    print(f"the even no are {even_no} ")
+
+3........main module.........      
+    
+import helper
+
+employees = [{ "name": "Tina",  "age": 30},{"name": "Tim","age": 35},{"name":"siri","age":20}]
+helper.operations_on_dict(employees)
+
+user_input=input("enter a string:")
+helper.count_of_lower_upper(user_input)
+
+input_list=[1,2,5,6,56,98,36]
+helper.cal_of_evenno(input_list)
+
+
+output:
+name : Tina
+age : 30
+name : Tim
+age : 35
+name : siri
+age : 20
+the youngest employee is
+siri : 20
+enter a string:SireeSha
+no of upper case letters in SireeSha are 2
+no of upper case letters in SireeSha are 6
+the even no are [2, 6, 56, 98, 36]
 
 
 
