@@ -15,8 +15,21 @@ hey user enter a number
 3
 [4, 4.5, 6.8, 10, 13, 22, 35, 52, 83]
 
-2.3....Second program
+2.#....Second program on dictionaries......
+employee={"name":"tim","age":30,"birthday":"1990-03-10","job":"Devops Engineer"}
+dict1={"job":"Software Engineer"}
+employee.update(dict1)
+del employee['age']
 
+for k in employee:
+   print(k,':' ,employee[k])
+   
+output:
+name : tim
+birthday : 1990-03-10
+job : Software Engineer
+
+3.       
 
 
 
