@@ -77,6 +77,8 @@ Thank You
 
 helper module:
 
+3......Finding of youngest employee
+
 def operations_on_dict(data):
     for k in range(len(data)):
         print("name", ':', data[k]["name"])
@@ -85,7 +87,7 @@ def operations_on_dict(data):
     print("the youngest employee is")
     print(min_age["name"], ':', min_age["age"])
 
-
+#......finding of number of lower and upper letters
 def count_of_lower_upper(input):
     upper=0
     lower=0
@@ -99,6 +101,8 @@ def count_of_lower_upper(input):
     print(f"no of upper case letters in {input} are {upper}")
     print(f"no of upper case letters in {input} are {lower}")
 
+#.............finding of even numbers
+
 def cal_of_evenno(input):
     even_no=[i for i in input if i%2==0]
     print(f"the even no are {even_no} ")
@@ -106,6 +110,8 @@ def cal_of_evenno(input):
 3........main module.........      
     
 import helper
+
+#.........user input declarations and functions calling from helper module
 
 employees = [{ "name": "Tina",  "age": 30},{"name": "Tim","age": 35},{"name":"siri","age":20}]
 helper.operations_on_dict(employees)
