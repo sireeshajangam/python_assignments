@@ -251,7 +251,111 @@ you are guessing too high
 guess a number between 1 to 9 range:5
 YOU WON!
 
+7.# defining classes and objects.........................
+# Defining person class......................................
+class Person():
+     def __init__(self,f_name,l_name,age):
+         self.f_name=f_name
+         self.l_name=l_name
+         self.age=age
+     def print_name(self):
+         print(f"fullname: {self.f_name} {self.l_name}")
 
+# defining student class that inherits from person class.................
+class Student(Person):
+
+     def __init__(self,f_name,l_name,age,list):
+
+         super().__init__(f_name,l_name,age)
+         self.lectures=list
+
+         self.newlist=[]
+     def add_lect(self,lect_name):
+         print(f"lect_list= {self.lectures}")
+         self.lectures.append(lect_name)
+         print(f"added ({lect_name}) into list")
+
+     def del_lect(self,lect_name1):
+         self.lectures.remove(lect_name1)
+         print(f"deleted ({lect_name1}) from list")
+
+     def lect_list(self):
+         for i in self.lectures:
+            self.newlist.append(i)
+         print(f"list_of_lectures : {self.newlist} ")
+
+#Calling srtudent class........................................
+
+s=Student("siri","jangam" ,20,['python','java'])
+s.print_name()
+s.add_lect("c++")
+s.del_lect("java")
+s.lect_list()
+
+# defining professor class that inherits from person class.................................
+class Professor(Person):
+    def __init__(self, f_name, l_name, age, sub_list):
+        super().__init__(f_name, l_name, age)
+        self.subjects = sub_list
+        self.newlist=[]
+
+    def add_sub(self, sub_name):
+        print(f"sub_list= {self.subjects}")
+        self.subjects.append(sub_name)
+        print(f"added ({sub_name}) into subjects")
+
+    def del_sub(self, subname):
+
+        self.subjects.append(subname)
+        print(f"added ({subname}) from subjects")
+
+    def sub_list(self):
+        for i in self.subjects:
+            self.newlist.append(i)
+        print(f"subjects : {self.newlist} 
+
+# calling professor class.......................................................................
+p=Professor("syam","tarini",20,['python','java','DS','OS'])
+p.print_name()
+p.add_sub("CN")
+p.del_sub("DS")
+p.sub_list()
+
+# Defining lectures class............................................
+class Lectures:
+    def __init__(self, name, max_no, duration, list):
+        self.name = name
+        self.max_no = max_no
+        self.duration = duration
+        self.profes_list = list
+        self.newlist=[]
+
+    def display_of_lect_infor(self):
+        print("lectures details")
+        print(f"name  = {self.name}")
+        print(f"max_no= {self.max_no}")
+        print(f"duration = {self.duration}")
+        print(f"prof_list = {self.profes_list}")
+
+    def add_prof(self, name):
+
+        self.newlist.append(name)
+        print(f"added ({name}) into prof_list")
+
+    def profe_list(self):
+        for i in self.profes_list:
+            self.newlist.append(i)
+        print(f"prof_list : {self.newlist} ")
+
+# calling lectures class.................................................
+l=Lectures("python",100,"10hours",['syam','ram','vara'])
+l.display_of_lect_infor()
+l.add_prof('siri')
+l.profe_list()
+              
+              
+output:
+              
 
 
 
