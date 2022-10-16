@@ -356,6 +356,23 @@ l.profe_list()
               
 output:
               
+fullname: siri jangam
+lect_list= ['python', 'java']
+added (c++) into list
+deleted (java) from list
+list_of_lectures : ['python', 'c++']
+fullname: syam tarini
+sub_list= ['python', 'java', 'DS', 'OS']
+added (CN) into subjects
+added (DS) from subjects
+subjects : ['python', 'java', 'DS', 'OS', 'CN', 'DS']
+lectures details
+name  = python
+max_no= 100
+duration = 10hours
+prof_list = ['syam', 'ram', 'vara']
+added (siri) into prof_list
+prof_list : ['siri', 'syam', 'ram', 'vara']
 
 
 
