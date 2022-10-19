@@ -374,6 +374,105 @@ prof_list = ['syam', 'ram', 'vara']
 added (siri) into prof_list
 prof_list : ['siri', 'syam', 'ram', 'vara']
 
+8.#################Program to print remaining days to your birthday#......
+
+
+from datetime import date
+
+today = date.today()
+pd=today.day
+pm=today.month
+py=today.year
+print("Today's date:", today)
+by=today.year
+print(by)
+bd=int(input('enter your birthday day:'))
+bm=int(input('enter your birthday month:'))
+print(f"your birthday date is:{bd}/{bm}/")
+if(bm<pm)and(bd>12):
+    by=by+1
+    print(by)
+print(by)
+
+if(bd<pd):
+    rd=bd-pd
+else:
+    bd=bd+30
+    rd=bd-pd
+    bm=bm-1
+if (bm>=pm):
+    rm=bm-pm
+else:
+    bm=bm+12
+    rm=bm-pm
+    py=py-1
+
+days=rd+rm*30
+hours=days*24
+min=hours*60
+print("Remaining days to your birthday=",days)
+print("remaining hours to your birthday=",hours)
+print("remaining minutes to your birthday=",min)
+
+
+output:
+              
+Today's date: 2022-10-19
+
+enter your birthday day:22
+enter your birthday month:3
+your birthday date is:22/3
+Remaining days to your birthday= 153
+remaining hours to your birthday= 3672
+remaining minutes to your birthday= 220320
+
+              
+9.##..........program to display the repositories information through api request...........
+              
+import requests
+response=requests.get(" https://api.github.com/users/sireeshajangam/repos")
+my_projects=response.json()
+
+list=[]
+for projects in my_projects:
+
+   list.append(projects['full_name'])
+   print(f" url of {projects ['name']}  :{projects['url']}")
+
+print("lists of repositories are:")
+for i in list:
+ print(i)
+ 
+output:
+              
+ url of eks-demos  :https://api.github.com/repos/sireeshajangam/eks-demos
+ url of first-contributions  :https://api.github.com/repos/sireeshajangam/first-contributions
+ url of forkex  :https://api.github.com/repos/sireeshajangam/forkex
+ url of forkexample  :https://api.github.com/repos/sireeshajangam/forkexample
+ url of git  :https://api.github.com/repos/sireeshajangam/git
+ url of gitacnt  :https://api.github.com/repos/sireeshajangam/gitacnt
+ url of gitfiles  :https://api.github.com/repos/sireeshajangam/gitfiles
+ url of lakshmi  :https://api.github.com/repos/sireeshajangam/lakshmi
+ url of priya  :https://api.github.com/repos/sireeshajangam/priya
+ url of pythonproject_siri  :https://api.github.com/repos/sireeshajangam/pythonproject_siri
+ 
+ lists of repositories are:
+ sireeshajangam/eks-demos
+ sireeshajangam/first-contributions
+ sireeshajangam/forkex
+ sireeshajangam/forkexample
+ sireeshajangam/git
+ sireeshajangam/gitacnt
+ sireeshajangam/gitfiles
+ sireeshajangam/priya
+ sireeshajangam/pythonproject_siri
+ sireeshajangam/python_project
+
+            
+              
+
+
+
 
 
 
