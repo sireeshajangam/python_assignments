@@ -396,56 +396,52 @@ added (siri) into prof_list
 prof_list : ['siri', 'syam', 'ram', 'vara']
 
 8.#################Program to print remaining days to your birthday#......
-
-
+from datetime import datetime
 from datetime import date
+import time
 
 today = date.today()
-pd=today.day
-pm=today.month
-py=today.year
-print("Today's date:", today)
-by=today.year
-print(by)
-bd=int(input('enter your birthday day:'))
-bm=int(input('enter your birthday month:'))
-print(f"your birthday date is:{bd}/{bm}/")
-if(bm<pm)and(bd>12):
-    by=by+1
-    print(by)
-print(by)
 
-if(bd<pd):
-    rd=bd-pd
-else:
-    bd=bd+30
-    rd=bd-pd
-    bm=bm-1
-if (bm>=pm):
-    rm=bm-pm
-else:
-    bm=bm+12
-    rm=bm-pm
-    py=py-1
 
-days=rd+rm*30
-hours=days*24
-min=hours*60
-print("Remaining days to your birthday=",days)
-print("remaining hours to your birthday=",hours)
-print("remaining minutes to your birthday=",min)
+def user_birthday():
+    year = int(input("enter your birthday year:"))
+    month = int(input("enter your birthday month:"))
+    day = int(input("Enter your birthday date:"))
 
+    birthday = datetime(year, month, day)
+    return birthday
+
+
+def calculate_dates(birthday):
+    today == date.fromtimestamp(time.time())
+    birthday = date(today.year, birthday.month, birthday.day)
+    if birthday < today:
+        birthday = birthday.replace(year=today.year + 1)
+        return birthday
+    else:
+        return birthday
+
+
+bday = user_birthday()
+t = calculate_dates(bday)
+time_to_birthday = abs(t - today)
+days = str(time_to_birthday.days)
+present_time=datetime.now()
+h=present_time.hour
+m=present_time.minute
+s=present_time.second
+hours=int(int(days)-1)*24+24-h
+mins=int((hours-1)*60)-m
+
+print(f"Time to your Birthday is :{days} days :{h} hours :{m} minutes")
 
 output:
-              
-Today's date: 2022-10-19
-
-enter your birthday day:22
+enter your birthday year:2001
 enter your birthday month:3
-your birthday date is:22/3
-Remaining days to your birthday= 153
-remaining hours to your birthday= 3672
-remaining minutes to your birthday= 220320
+Enter your birthday date:22
+Time to your Birthday is :153 days :2 hours :6 minutes
+              
+
 
               
 9.##..........program to display the repositories information through api request...........
