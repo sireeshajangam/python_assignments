@@ -15,7 +15,7 @@ hey user enter a number
 3
 [4, 4.5, 6.8, 10, 13, 22, 35, 52, 83]
 
-2.#....Second program on dictionaries......
+2.#....Second program on dictionaries.............................................................................
 employee={"name":"tim","age":30,"birthday":"1990-03-10","job":"Devops Engineer"}
 dict1={"job":"Software Engineer"}
 employee.update(dict1)
@@ -29,7 +29,7 @@ name : tim
 birthday : 1990-03-10
 job : Software Engineer
 
-3. 3..........using dictionaries....... 
+3. 3..........using dictionaries............................................................................... 
 employees = [{
   "name": "Tina",
   "age": 30,
@@ -73,18 +73,21 @@ Australia
 4.#.............calculator Program............
 
 def calculation(input1,input2):
+     if(choice==1):
+      addition_of_num = input1 + input2
+      print(f"Addition of {input1} and {input2} is {addition_of_num}")
+    elif(choice==2):
+      sub_of_num = input1 - input2
+      print(f"Substraction of {input1} and {input2} is {sub_of_num}")
+    elif(choice==3):
+      mul_of_num = input1 * input2
+      print(f"Multiplication of {input1} and {input2} is {mul_of_num}")
+    elif(choice==4)and (input2 != 0):
 
-       addition_of_num=input1+input2
-       print(f"Addition of {input1} and {input2} is {addition_of_num}")
-       sub_of_num=input1-input2
-       print(f"Substraction of {input1} and {input2} is {sub_of_num}")
-       mul_of_num=input1*input2
-       print(f"Multiplication of {input1} and {input2} is {mul_of_num}")
-       if(input2!=0):
-           div_of_num=input1/input2
-           print(f"Division of {input1} and {input2} is {div_of_num}")
+        div_of_num = input1 / input2
+        print(f"Division of {input1} and {input2} is {div_of_num}")
 
-       else:
+    else:
            print("Division by zero is ivalid,please enter a valid value")
 
 
@@ -97,14 +100,16 @@ def validate_and_execution():
     except ValueError:
             print("you entered an invalid numbers,please enter valid numbers")
 
+
 user_inputs="true"
 count=0
 
 while user_inputs=="true":
 
+     print(" 1.Addition\n 2.Substraction\n 3.Multiplication \n 4.Division \n 5.exit")
 
-     user_input = input("Do u wnt to run the program!:")
-     if user_input=="yes":
+     choice =int(input("Enter Choice:"))
+     if choice!=5:
         user_input1=input("enter first number:")
         user_input2=input("enter second number:")
         count=count+1
@@ -117,32 +122,48 @@ print("Thank You")
 
 
 output:
-Do u wnt to run the program!:yes
-  enter first number:3
-  enter second number:4
-  Addition of 3 and 4 is 7
-  Substraction of 3 and 4 is -1
-  Multiplication of 3 and 4 is 12
-  Division of 3 and 4 is 0.75
-Do u wnt to run the program!:yes
-  enter first number:siri
-  enter second number:vara
-  you entered an invalid numbers,please enter valid numbers
-Do u wnt to run the program!:yes
-  enter first number:2
-  enter second number:0
-  Addition of 2 and 0 is 2
-  Substraction of 2 and 0 is 2
-  Multiplication of 2 and 0 is 0
-  Division by zero is ivalid,please enter a valid value
-  
-Do u wnt to run the program!:no
-3 times you are performed the calculations
-Thank You
+ 1.Addition
+ 2.Substraction
+ 3.Multiplication
+ 4.Division
+ 5.exit
+ Enter your choice:1
+ enter first number:2
+ enter second number:3
+ Addition of 2 and 3 is 5
+ 1.Addition
+ 2.Substraction
+ 3.Multiplication
+ 4.Division
+ 5.exit
+ Enter your choice:4
+ enter first number:4
+ enter second number:0
+ Division by zero is invalid,please enter a valid value
+ 1.Addition
+ 2.Substraction
+ 3.Multiplication
+ 4.Division
+ 5.exit
+ Enter your choice:2
+ enter first number:ss
+ enter second number:ssd
+ you entered an invalid numbers,please enter valid numbers
+ 1.Addition
+ 2.Substraction
+ 3.Multiplication
+  4.Division
+ 5.exit
+ Enter your choice:5
+ 3 times you are performed the calculations
+ Thank You
 
-helper module:
 
-3......Finding of youngest employee
+#### 5.Program using modules........................................................................
+####.......HELPER MODULE....#######........
+
+
+######......Finding of youngest employee
 
 def operations_on_dict(data):
     for k in range(len(data)):
@@ -152,7 +173,7 @@ def operations_on_dict(data):
     print("the youngest employee is")
     print(min_age["name"], ':', min_age["age"])
 
-#......finding of number of lower and upper letters
+######......finding of number of lower and upper letters
 def count_of_lower_upper(input):
     upper=0
     lower=0
@@ -166,13 +187,13 @@ def count_of_lower_upper(input):
     print(f"no of upper case letters in {input} are {upper}")
     print(f"no of upper case letters in {input} are {lower}")
 
-#.............finding of even numbers
+#######.............finding of even numbers
 
 def cal_of_evenno(input):
     even_no=[i for i in input if i%2==0]
     print(f"the even no are {even_no} ")
 
-#........main module.........      
+#######........MAIN MODULE..###############......     
     
 import helper
 
@@ -228,7 +249,7 @@ count=0
 
 while user_input=="true":
 
-     guess_number=int(input("guess a number between 1 to 9 range:"))
+     guess_number=int(input("Guess a number between 1 to 9 range:"))
      final_result=result_of_game(ran_values,guess_number)
      if final_result=="YOU WON!":
          break
@@ -240,15 +261,15 @@ print(final_result)
 
 
 output:
-guess a number between 1 to 9 range:8
+Guess a number between 1 to 9 range:8
 you are guessing too high
-guess a number between 1 to 9 range:2
+Guess a number between 1 to 9 range:2
 you are guessing too low!
-guess a number between 1 to 9 range:4
+Guess a number between 1 to 9 range:4
 you are guessing too low!
-guess a number between 1 to 9 range:6
+Guess a number between 1 to 9 range:6
 you are guessing too high
-guess a number between 1 to 9 range:5
+Guess a number between 1 to 9 range:5
 YOU WON!
 
 7.# defining classes and objects.........................
