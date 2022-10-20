@@ -447,43 +447,81 @@ Time to your Birthday is :153 days :2 hours :6 minutes
 9.##..........program to display the repositories information through api request...........
               
 import requests
+user_name=input("Enter githhub user name:")
 response=requests.get(" https://api.github.com/users/sireeshajangam/repos")
 my_projects=response.json()
-
+print(my_projects)
 list=[]
+y=1
 for projects in my_projects:
 
    list.append(projects['full_name'])
-   print(f" url of {projects ['name']}  :{projects['url']}")
-
+   print(f"project_no:{y}")
+   print(f"project_name:  {projects ['name']}  ")
+   print(f"url:{projects['url']}")
+   y=y+1
 print("lists of repositories are:")
+x=1
 for i in list:
- print(i)
+      print(x,':' ,i)
+      x=x+1
  
 output:
+project_no:1
+project_name:  eks-demos
+url:https://api.github.com/repos/sireeshajangam/eks-demos
+project_no:2
+project_name:  first-contributions
+url:https://api.github.com/repos/sireeshajangam/first-contributions
+project_no:3
+project_name:  forkex
+url:https://api.github.com/repos/sireeshajangam/forkex
+project_no:4
+project_name:  forkexample
+url:https://api.github.com/repos/sireeshajangam/forkexample
+project_no:5
+project_name:  git
+project_no:6
+project_name:  gitacnt
+url:https://api.github.com/repos/sireeshajangam/gitacnt
+project_no:7
+project_name:  gitfiles
+url:https://api.github.com/repos/sireeshajangam/gitfiles
+project_no:8
+project_name:  lakshmi
+url:https://api.github.com/repos/sireeshajangam/lakshmi
+project_no:9
+project_name:  priya
+url:https://api.github.com/repos/sireeshajangam/priya
+project_no:10
+project_name:  pythonproject_siri
+url:https://api.github.com/repos/sireeshajangam/pythonproject_siri
+project_no:11
+project_name:  python_project
+url:https://api.github.com/repos/sireeshajangam/python_project
+project_no:12
+project_name:  siri
+url:https://api.github.com/repos/sireeshajangam/siri
+project_no:13
+project_name:  siri-from-git
+url:https://api.github.com/repos/sireeshajangam/siri-from-git
+lists of repositories are:
+1 : sireeshajangam/eks-demos
+2 : sireeshajangam/first-contributions
+3 : sireeshajangam/forkex
+4 : sireeshajangam/forkexample
+5 : sireeshajangam/git
+6 : sireeshajangam/gitacnt
+7 : sireeshajangam/gitfiles
+8 : sireeshajangam/lakshmi
+9 : sireeshajangam/priya
+10 : sireeshajangam/pythonproject_siri
+11 : sireeshajangam/python_project
+12 : sireeshajangam/siri
+13 : sireeshajangam/siri-from-git
               
- url of eks-demos  :https://api.github.com/repos/sireeshajangam/eks-demos
- url of first-contributions  :https://api.github.com/repos/sireeshajangam/first-contributions
- url of forkex  :https://api.github.com/repos/sireeshajangam/forkex
- url of forkexample  :https://api.github.com/repos/sireeshajangam/forkexample
- url of git  :https://api.github.com/repos/sireeshajangam/git
- url of gitacnt  :https://api.github.com/repos/sireeshajangam/gitacnt
- url of gitfiles  :https://api.github.com/repos/sireeshajangam/gitfiles
- url of lakshmi  :https://api.github.com/repos/sireeshajangam/lakshmi
- url of priya  :https://api.github.com/repos/sireeshajangam/priya
- url of pythonproject_siri  :https://api.github.com/repos/sireeshajangam/pythonproject_siri
  
- lists of repositories are:
- sireeshajangam/eks-demos
- sireeshajangam/first-contributions
- sireeshajangam/forkex
- sireeshajangam/forkexample
- sireeshajangam/git
- sireeshajangam/gitacnt
- sireeshajangam/gitfiles
- sireeshajangam/priya
- sireeshajangam/pythonproject_siri
- sireeshajangam/python_project
+ 
 
             
               
