@@ -1,0 +1,195 @@
+TABLES:
+
+create table emp(
+       Id int,
+       emp_name varchar(20),
+       emp_salary int,
+       office varchar(20),
+       
+       );
+
+insert into employee values(101,"satya",30000,"chennai"),(102,"vinay",40000,"hyd");
+
++------+----------+--------+----------+
+| Id   | Emp_Name | Salary | Location |
++------+----------+--------+----------+
+|  101 | satya    |  30000 | chennai  |
+|  102 | vinay    |  40000 | hyd      |
++------+----------+--------+----------+
+
+
+create table emp_target(
+    -> Id int,
+    -> Emp_Name varchar(20),
+    -> Salary int,
+    -> Location varchar(20),
+    -> StartDate datetime,
+    -> EndDate datetime,
+    -> Cur_Flag varchar(10)
+    -> );
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                   SDCTYPE1
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+emp table:
++------+------------+--------+--------------+
+| Id   | Emp_Name   | Salary | Cur_Location |
++------+------------+--------+--------------+
+|  101 | satya      |  30000 | chennai      |
+|  102 | vinayRoyal |  40000 | hyd          |
++------+------------+--------+--------------+
+
+DELIMITER $$
+CREATE TRIGGER Type1
+AFTER UPDATE ON emp
+FOR EACH ROW
+BEGIN
+IF OLD.Emp_Name!=NEW.Emp_Name THEN
+	UPDATE emp_target SET Emp_Name=new.Emp_Name WHERE Id=NEW.Id;
+END IF;
+END $$
+DELIMITER ;
+update emp set Emp_Name="SriSatya" where Id=101;
+Query OK, 1 row affected (0.01 sec)
+
++------+----------+--------+----------+---------------------+---------------------+----------+
+| Id   | Emp_Name | Salary | Location | StartDate           | EndDate             | Cur_Flag |
++------+----------+--------+----------+---------------------+---------------------+----------+
+|  101 | srisatya |  30000 | chennai  | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        |
+|  102 | vinay    |  40000 | hyd      | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        |
++------+----------+--------+----------+---------------------+---------------------+----------
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                      SCD TYPE-2
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+PROCEDURE:
+--INSERTING NEW RECORDS FROMSOURCE TO TARGET
+create procedure final()
+begin
+declare newdate datetime;
+declare maxdate datetime;
+set newdate=now();
+set maxdate ="9999-12-23 11:30:23";
+insert into emp_target(Id,Emp_Name,Salary,Location,StartDate,EndDate,Cur_Flag)
+select
+e.Id,
+e.Emp_Name,
+e.Salary,
+e.Location,
+newdate as StartDate,
+maxdate as EndDate,
+'Y' as Cur_Flag
+from emp e
+left join emp_target df
+on df.Id = e.Id
+where df.Id is Null;
+--UPADTING RECORD FROM SOURCE TO TARGET
+create procedure updates()
+begin
+declare newdate datetime;
+declare maxdate datetime;
+set newdate=now();
+insert into Emp_target(Id,Emp_Name,Salary,Location,StartDate,EndDate,Cur_Flag)
+select
+e.Id,
+e.Emp_Name,
+e.Salary,
+e.Location,
+now() as StartDate,
+maxdate as EndDate,
+'Y' as Cur_Flag
+from emp e
+inner join emp_target df
+on e.Id=df.Id
+and df.EndDate=newdate
+where
+e.Emp_Name <> df.Emp_Name
+or e.Salary <> df.Salary
+or e.Location <> df.Location;
+end;
+
+CALLING PROCEDURE:
+
+call final();
+select*from emp_target;
++------+----------+--------+----------+---------------------+---------------------+----------+
+| Id   | Emp_Name | Salary | Location | StartDate           | EndDate             | Cur_Flag |
++------+----------+--------+----------+---------------------+---------------------+----------+
+|  101 | satya    |  30000 | chennai  | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        |
+|  102 | vinay    |  40000 | hyd      | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        |
++------+----------+--------+----------+---------------------+---------------------+----------+
+update emp set Emp_Name="vinayRoyal" where Id=102; 
+select*from emp;
++------+------------+--------+----------+
+| Id   | Emp_Name   | Salary | Location |
++------+------------+--------+----------+
+|  101 | satya      |  30000 | chennai  |
+|  102 | vinayRoyal |  40000 | hyd      |
++------+------------+--------+----------+
+ call updates();
+ select*from emp_target;
+ +------+------------+--------+----------+---------------------+---------------------+----------+
+| Id   | Emp_Name   | Salary | Location | StartDate           | EndDate             | Cur_Flag |
++------+------------+--------+----------+---------------------+---------------------+----------+
+|  101 | satya      |  30000 | chennai  | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        |
+|  102 | vinay      |  40000 | hyd      | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        |
+|  102 | vinayRoyal |  40000 | hyd      | 2023-02-21 17:35:29 | 9999-12-23 11:30:23 | Y        |
++------+------------+--------+----------+---------------------+---------------------+----------+
+
+ update emp_target set EndDate=now() ,Cur_Flag="N" where Emp_Name="vinay";
+ +------+------------+--------+----------+---------------------+---------------------+----------+
+| Id   | Emp_Name   | Salary | Location | StartDate           | EndDate             | Cur_Flag |
++------+------------+--------+----------+---------------------+---------------------+----------+
+|  101 | satya      |  30000 | chennai  | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        |
+|  102 | vinay      |  40000 | hyd      | 2023-02-21 17:27:27 | 2023-02-21 17:38:46 | N        |
+|  102 | vinayRoyal |  40000 | hyd      | 2023-02-21 17:35:29 | 9999-12-23 11:30:23 | Y        |
++------+------------+--------+----------+---------------------+---------------------+----------+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+                                                       SDCTYPE-3
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+alter table emp_target rename column Location=Cur_Location;
+alter table emp_target add column prev_Location varchar(20);
+select*from Emp_target;
++------+------------+--------+--------------+---------------------+---------------------+----------+---------------+
+| Id   | Emp_Name   | Salary | Cur_Location | StartDate           | EndDate             | Cur_Flag | prev_Location |
++------+------------+--------+--------------+---------------------+---------------------+----------+---------------+
+|  101 | satya      |  30000 | chennai      | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        | NULL          |
+|  102 | vinay      |  40000 | hyd          | 2023-02-21 17:27:27 | 2023-02-21 17:38:46 | N        | NULL          |
+|  102 | vinayRoyal |  40000 | hyd          | 2023-02-21 17:35:29 | 9999-12-23 11:30:23 | Y        | NULL          |
++------+------------+--------+--------------+---------------------+---------------------+----------+---------------+
+PROCEDURE:
+--updating location
+ 
+
+DELIMITER $$
+CREATE TRIGGER TRIGGER6
+AFTER UPDATE ON emp
+FOR EACH ROW
+BEGIN
+IF OLD.Cur_Location!=NEW.Cur_Location THEN
+	UPDATE emp_target SET Cur_Location=new.Cur_Location,prev_Location=old.Cur_Location WHERE Id=NEW.Id;
+END IF;
+END $$
+DELIMITER ;
+
+update emp set Cur_Location="hyd" where Id=101;
+Query OK, 1 row affected (0.03 sec)
+
++------+------------+--------+--------------+---------------------+---------------------+----------+---------------+
+| Id   | Emp_Name   | Salary | Cur_Location | StartDate           | EndDate             | Cur_Flag | prev_Location |
++------+------------+--------+--------------+---------------------+---------------------+----------+---------------+
+|  101 | satya      |  30000 | hyd          | 2023-02-21 17:27:27 | 9999-12-23 11:30:23 | Y        | chennai       |
+|  102 | vinay      |  40000 | hyd          | 2023-02-21 17:27:27 | 2023-02-21 17:38:46 | N        | NULL          |
+|  102 | vinayRoyal |  40000 | hyd          | 2023-02-21 17:35:29 | 9999-12-23 11:30:23 | Y        | NULL          |
++------+------------+--------+--------------+---------------------+---------------------+----------+---------------+
+
+
+
+   
+
+
+
+
+  
