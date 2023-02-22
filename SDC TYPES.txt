@@ -4,7 +4,7 @@ create table emp(
        Id int,
        emp_name varchar(20),
        emp_salary int,
-       office varchar(20),
+       Location varchar(20),
        
        );
 
@@ -33,7 +33,7 @@ create table emp_target(
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 emp table:
 +------+------------+--------+--------------+
-| Id   | Emp_Name   | Salary | Cur_Location |
+| Id   | Emp_Name   | Salary | Location     |
 +------+------------+--------+--------------+
 |  101 | satya      |  30000 | chennai      |
 |  102 | vinayRoyal |  40000 | hyd          |
